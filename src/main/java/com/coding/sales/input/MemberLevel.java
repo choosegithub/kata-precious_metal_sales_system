@@ -1,5 +1,7 @@
 package com.coding.sales.input;
 
+import java.math.BigDecimal;
+
 /**
  * 会员等级
  * @author Eclipse
@@ -9,6 +11,7 @@ public class MemberLevel {
 	
 	private String levelId;
 	private String levelName;
+	private int points;
 	
 	private static String PUBLICLEVEL = "1";
 	private static String GOLDLEVEL = "2";
@@ -39,7 +42,7 @@ public class MemberLevel {
 	 * @param memberPoints
 	 * @return
 	 */
-	public MemberLevel getNewMemLevel(int memberPoints) {
+	public static MemberLevel getNewMemLevel(int memberPoints) {
 		
 		MemberLevel member = null;
 		if(memberPoints>ZERO && memberPoints <ONEWAN) {
@@ -53,4 +56,67 @@ public class MemberLevel {
 		}
 		return member;
 	}
+	
+	/**
+	 * 积分
+	 * @param amt
+	 * @return
+	 */
+	public int getNewPoint(BigDecimal amt) {
+		
+		int points = amt.setScale( 0, BigDecimal.ROUND_DOWN ).intValue();
+		if(PUBLICLEVEL.equals(this.levelId)) {
+			points = points;
+		}else if(GOLDLEVEL.equals(this.levelId)) {
+			points = (int) (points * 1.5);
+		}else if(PLATINUMLEVEL.equals(this.levelId)) {
+			points = (int) (points *1.8);
+		}else if(DIAMONDLEVEL.equals(this.levelId)) {
+			points = (int) (points * 2.0);
+		}
+		return points;
+	}
+
+	/**
+	 * @return the levelId
+	 */
+	public String getLevelId() {
+		return levelId;
+	}
+
+	/**
+	 * @param levelId the levelId to set
+	 */
+	public void setLevelId(String levelId) {
+		this.levelId = levelId;
+	}
+
+	/**
+	 * @return the levelName
+	 */
+	public String getLevelName() {
+		return levelName;
+	}
+
+	/**
+	 * @param levelName the levelName to set
+	 */
+	public void setLevelName(String levelName) {
+		this.levelName = levelName;
+	}
+
+	/**
+	 * @return the points
+	 */
+	public int getPoints() {
+		return points;
+	}
+
+	/**
+	 * @param points the points to set
+	 */
+	public void setPoints(int points) {
+		this.points = points;
+	}
+	
 }

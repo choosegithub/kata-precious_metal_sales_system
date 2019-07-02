@@ -9,6 +9,7 @@ import java.util.Map;
 
 import com.coding.sales.input.CouponsAction;
 import com.coding.sales.input.JoinAction;
+import com.coding.sales.input.MemberLevel;
 import com.coding.sales.input.Members;
 import com.coding.sales.input.MetalProduct;
 import com.coding.sales.input.OrderCommand;
@@ -38,24 +39,16 @@ public class OrderApp {
     
 	}
 	 //会员信息
-    static List<Map<String,Members>> MERMBERLIST = null;
+    static Map<String,Members> MERMBERLIST = null;
     
     static {
-    	MERMBERLIST = new ArrayList<Map<String,Members>>();
+    	MERMBERLIST = new HashMap<String,Members>();
     	
-    	Map<String,Members> map1 = new HashMap<String,Members>();
-    	map1.put("6236609999", new Members("6236609999","马丁",1,1,9860));
-    	Map<String,Members> map2 = new HashMap<String,Members>();
-    	map2.put("6630009999", new Members("6630009999","王立",2,2,48860));
-    	Map<String,Members> map3 = new HashMap<String,Members>();
-    	map3.put("8230009999", new Members("8230009999","李想",3,3,98860));
-    	Map<String,Members> map4 = new HashMap<String,Members>();
-    	map4.put("9230009999", new Members("9230009999","张三",4,4,198860));
-    	
-    	MERMBERLIST.add(map1);
-    	MERMBERLIST.add(map2);
-    	MERMBERLIST.add(map3);
-    	MERMBERLIST.add(map4);
+    	Map<String,Members> map = new HashMap<String,Members>();
+    	map.put("6236609999", new Members("6236609999","马丁",1,1,9860));
+    	map.put("6630009999", new Members("6630009999","王立",2,2,48860));
+    	map.put("8230009999", new Members("8230009999","李想",3,3,98860));
+    	map.put("9230009999", new Members("9230009999","张三",4,4,198860));
     	
     }
 
@@ -85,16 +78,29 @@ public class OrderApp {
 
        
         List<OrderItemCommand> orderItmes = command.getItems();
-        List<OrderInfo> proList = new ArrayList<OrderInfo>();
+        BigDecimal total = new BigDecimal(0);
+        BigDecimal totalFree = new BigDecimal(0);
         for (OrderItemCommand orderItemCommand : orderItmes) {
         	MetalProduct product = METALPRODUCTLIST.get(orderItemCommand.getProduct());
-        	proList.add(new OrderInfo(product,orderItemCommand.getAmount()));
+        	OrderInfo temOrder = new OrderInfo(product,orderItemCommand.getAmount());
+        	temOrder.productPriceCal(product);
+        	BigDecimal tmp = temOrder.getAmount();
+        	BigDecimal tmpFree = temOrder.getSubTotal();
+        	total.add(tmp);
+        	totalFree.add(tmpFree);
 		}
+        
+        Members member = MERMBERLIST.get(command.getMemberId());
         
         result = new OrderRepresentation();
         result.setOrderId(command.getOrderId());
         result.setCreateTime(new Date(command.getCreateTime()));
         result.setMemberNo(command.getMemberId());
+        result.setReceivables(total);
+        result.setTotalPrice(totalFree);
+        result.setOldMemberType(member.getOldMemberType()+"");
+        MemberLevel merberlevl = MemberLevel.getNewMemLevel(member.getMemberPoints()+member.getMemberPointsIncreased());
+        result.setNewMemberType(merberlevl.getNewPoint(total)+"");
         
         
         
