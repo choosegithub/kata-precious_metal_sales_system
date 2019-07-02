@@ -14,14 +14,14 @@ public class MetalProduct {
     private String productName;//产品名称
     private String priceUnit;//单位
     private BigDecimal price;//单价
-    private List<FavourableActivity> favourActions;//参与的活动
+    private List<JoinAction> favourActions;//参与的活动
     
     public MetalProduct(String productNo) {
     	this.productNo = productNo;
     }
     
     public MetalProduct(String productNo,String productName,BigDecimal price,String priceUnit,
-    		List<FavourableActivity> favourableActivity) {
+    		List<JoinAction> favourableActivity) {
     	this.productNo = productNo;
     	this.productName = productName;
     	this.price = price;
@@ -89,13 +89,13 @@ public class MetalProduct {
 	/**
 	 * @return the favourActions
 	 */
-	public List<FavourableActivity> getFavourActions() {
+	public List<JoinAction> getFavourActions() {
 		return favourActions;
 	}
 	/**
 	 * @param favourActions the favourActions to set
 	 */
-	public void setFavourActions(List<FavourableActivity> favourActions) {
+	public void setFavourActions(List<JoinAction> favourActions) {
 		this.favourActions = favourActions;
 	}
     

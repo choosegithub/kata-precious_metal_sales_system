@@ -1,7 +1,9 @@
 package com.coding.sales.input;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -9,19 +11,19 @@ import java.util.Map;
  * @author Eclipse
  *
  */
-public class FavourableActivity {
+public class JoinAction {
 
-	private String actId;//活动编号
-	private String actName;//活动名称
-	private String actType;//活动类型
-	private double actRate;//比率(折扣)
+	public String actId;//活动编号
+	public String actName;//活动名称
+	public String actType;//活动类型
+	public BigDecimal actRate;//比率(折扣)
 	
 	public  static String COUPONS = "1";//打折
 	public static String REDUCED_ACTIVITY = "2";//满减
 	public static String FULLFEED_ACTIVITY = "3";//满送
 	
 	
-	private static Map<BigDecimal,BigDecimal> REDUCed_MAP = null;
+	public static Map<BigDecimal,BigDecimal> REDUCed_MAP = null;
 	static {
 		REDUCed_MAP = new HashMap<BigDecimal,BigDecimal>();
 		REDUCed_MAP.put(new BigDecimal(3000), new BigDecimal(350));
@@ -35,7 +37,7 @@ public class FavourableActivity {
 	 * @param actType
 	 * @param actRate
 	 */
-	public FavourableActivity(String actId, String actName, String actType, double actRate) {
+	public JoinAction(String actId, String actName, String actType, BigDecimal actRate) {
 		super();
 		this.actId = actId;
 		this.actName = actName;
@@ -43,32 +45,10 @@ public class FavourableActivity {
 		this.actRate = actRate;
 	}
 	
-	
-	/**
-	 * 打折
-	 * @param amt
-	 * @param actRate
-	 * @return
-	 */
-	public BigDecimal getCouponsAction(BigDecimal amt,String actRate) {
-		
-		if(new BigDecimal(0).compareTo(amt)==0) {
-			return amt;
-		}
-		
-		return amt.multiply(new BigDecimal(actRate));
-		
+	public JoinAction() {
+		super();
 	}
 	
-	public BigDecimal getReducedAction(BigDecimal amt,String actType) {
-		if(new BigDecimal(0).compareTo(amt)==0) {
-			return amt;
-		}
-		
-		return null;
-	}
-	
-
 	/**
 	 * @return the actId
 	 */
@@ -120,7 +100,7 @@ public class FavourableActivity {
 	/**
 	 * @return the actRate
 	 */
-	public double getActRate() {
+	public BigDecimal getActRate() {
 		return actRate;
 	}
 
@@ -128,7 +108,7 @@ public class FavourableActivity {
 	/**
 	 * @param actRate the actRate to set
 	 */
-	public void setActRate(double actRate) {
+	public void setActRate(BigDecimal actRate) {
 		this.actRate = actRate;
 	}
 }

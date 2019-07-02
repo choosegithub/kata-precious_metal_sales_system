@@ -67,6 +67,10 @@ public class OrderRepresentation {
         this.payments = payments == null ? new ArrayList<PaymentRepresentation>() : payments;
         this.discountCards = discountCards;
     }
+    
+    public OrderRepresentation() {
+    	
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -186,4 +190,214 @@ public class OrderRepresentation {
 
         return result.toString();
     }
+
+	/**
+	 * @return the orderId
+	 */
+	public String getOrderId() {
+		return orderId;
+	}
+
+	/**
+	 * @param orderId the orderId to set
+	 */
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
+	/**
+	 * @return the createTime
+	 */
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	/**
+	 * @param createTime the createTime to set
+	 */
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	/**
+	 * @return the memberNo
+	 */
+	public String getMemberNo() {
+		return memberNo;
+	}
+
+	/**
+	 * @param memberNo the memberNo to set
+	 */
+	public void setMemberNo(String memberNo) {
+		this.memberNo = memberNo;
+	}
+
+	/**
+	 * @return the memberName
+	 */
+	public String getMemberName() {
+		return memberName;
+	}
+
+	/**
+	 * @param memberName the memberName to set
+	 */
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+
+	/**
+	 * @return the oldMemberType
+	 */
+	public String getOldMemberType() {
+		return oldMemberType;
+	}
+
+	/**
+	 * @param oldMemberType the oldMemberType to set
+	 */
+	public void setOldMemberType(String oldMemberType) {
+		this.oldMemberType = oldMemberType;
+	}
+
+	/**
+	 * @return the newMemberType
+	 */
+	public String getNewMemberType() {
+		return newMemberType;
+	}
+
+	/**
+	 * @param newMemberType the newMemberType to set
+	 */
+	public void setNewMemberType(String newMemberType) {
+		this.newMemberType = newMemberType;
+	}
+
+	/**
+	 * @return the memberPointsIncreased
+	 */
+	public int getMemberPointsIncreased() {
+		return memberPointsIncreased;
+	}
+
+	/**
+	 * @param memberPointsIncreased the memberPointsIncreased to set
+	 */
+	public void setMemberPointsIncreased(int memberPointsIncreased) {
+		this.memberPointsIncreased = memberPointsIncreased;
+	}
+
+	/**
+	 * @return the memberPoints
+	 */
+	public int getMemberPoints() {
+		return memberPoints;
+	}
+
+	/**
+	 * @param memberPoints the memberPoints to set
+	 */
+	public void setMemberPoints(int memberPoints) {
+		this.memberPoints = memberPoints;
+	}
+
+	/**
+	 * @return the items
+	 */
+	public List<OrderItemRepresentation> getItems() {
+		return items;
+	}
+
+	/**
+	 * @param items the items to set
+	 */
+	public void setItems(List<OrderItemRepresentation> items) {
+		this.items = items;
+	}
+
+	/**
+	 * @return the totalPrice
+	 */
+	public BigDecimal getTotalPrice() {
+		return totalPrice;
+	}
+
+	/**
+	 * @param totalPrice the totalPrice to set
+	 */
+	public void setTotalPrice(BigDecimal totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	/**
+	 * @return the discounts
+	 */
+	public List<DiscountItemRepresentation> getDiscounts() {
+		return discounts;
+	}
+
+	/**
+	 * @param discounts the discounts to set
+	 */
+	public void setDiscounts(List<DiscountItemRepresentation> discounts) {
+		this.discounts = discounts;
+	}
+
+	/**
+	 * @return the totalDiscountPrice
+	 */
+	public BigDecimal getTotalDiscountPrice() {
+		return totalDiscountPrice;
+	}
+
+	/**
+	 * @param totalDiscountPrice the totalDiscountPrice to set
+	 */
+	public void setTotalDiscountPrice(BigDecimal totalDiscountPrice) {
+		this.totalDiscountPrice = totalDiscountPrice;
+	}
+
+	/**
+	 * @return the receivables
+	 */
+	public BigDecimal getReceivables() {
+		return receivables;
+	}
+
+	/**
+	 * @param receivables the receivables to set
+	 */
+	public void setReceivables(BigDecimal receivables) {
+		this.receivables = receivables;
+	}
+
+	/**
+	 * @return the payments
+	 */
+	public List<PaymentRepresentation> getPayments() {
+		return payments;
+	}
+
+	/**
+	 * @param payments the payments to set
+	 */
+	public void setPayments(List<PaymentRepresentation> payments) {
+		this.payments = payments;
+	}
+
+	/**
+	 * @return the discountCards
+	 */
+	public List<String> getDiscountCards() {
+		return discountCards;
+	}
+
+	/**
+	 * @param discountCards the discountCards to set
+	 */
+	public void setDiscountCards(List<String> discountCards) {
+		this.discountCards = discountCards;
+	}
 }
