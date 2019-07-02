@@ -1,6 +1,12 @@
 package com.coding.sales;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.coding.sales.input.MetalProduct;
 import com.coding.sales.input.OrderCommand;
+import com.coding.sales.input.OrderInfo;
+import com.coding.sales.input.OrderItemCommand;
 import com.coding.sales.output.OrderRepresentation;
 
 /**
@@ -33,8 +39,15 @@ public class OrderApp {
     OrderRepresentation checkout(OrderCommand command) {
         OrderRepresentation result = null;
 
-        //TODO: 请完成需求指定的功能
-
+       
+        List<OrderItemCommand> orderItmes = command.getItems();
+        List<OrderInfo> proList = new ArrayList<OrderInfo>();
+        for (OrderItemCommand orderItemCommand : orderItmes) {
+        	proList.add(new OrderInfo(new MetalProduct(orderItemCommand.getProduct()),orderItemCommand.getAmount()));
+		}
+        
+        
+        
         return result;
     }
 }

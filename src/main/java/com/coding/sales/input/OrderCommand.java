@@ -47,7 +47,7 @@ public class OrderCommand {
     	
     	Map<String,MetalProduct> prdMap2 = new HashMap<String,MetalProduct>();
     	
-    	FavourableActivity favPrd = new FavourableActivity("1","打折",FavourableActivity.COUPONS,"0.9");
+    	FavourableActivity favPrd = new FavourableActivity("1","打折",FavourableActivity.COUPONS,0.9);
     	List<FavourableActivity> favPrdlist = new ArrayList<FavourableActivity>();
     	favPrdlist.add(favPrd);
     	

@@ -14,7 +14,7 @@ public class FavourableActivity {
 	private String actId;//活动编号
 	private String actName;//活动名称
 	private String actType;//活动类型
-	private String actRate;//比率(折扣)
+	private double actRate;//比率(折扣)
 	
 	public  static String COUPONS = "1";//打折
 	public static String REDUCED_ACTIVITY = "2";//满减
@@ -35,7 +35,7 @@ public class FavourableActivity {
 	 * @param actType
 	 * @param actRate
 	 */
-	public FavourableActivity(String actId, String actName, String actType, String actRate) {
+	public FavourableActivity(String actId, String actName, String actType, double actRate) {
 		super();
 		this.actId = actId;
 		this.actName = actName;
@@ -44,6 +44,12 @@ public class FavourableActivity {
 	}
 	
 	
+	/**
+	 * 打折
+	 * @param amt
+	 * @param actRate
+	 * @return
+	 */
 	public BigDecimal getCouponsAction(BigDecimal amt,String actRate) {
 		
 		if(new BigDecimal(0).compareTo(amt)==0) {
@@ -61,7 +67,7 @@ public class FavourableActivity {
 		
 		return null;
 	}
-
+	
 
 	/**
 	 * @return the actId
@@ -114,7 +120,7 @@ public class FavourableActivity {
 	/**
 	 * @return the actRate
 	 */
-	public String getActRate() {
+	public double getActRate() {
 		return actRate;
 	}
 
@@ -122,9 +128,7 @@ public class FavourableActivity {
 	/**
 	 * @param actRate the actRate to set
 	 */
-	public void setActRate(String actRate) {
+	public void setActRate(double actRate) {
 		this.actRate = actRate;
 	}
-	
-	
 }

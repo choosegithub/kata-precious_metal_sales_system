@@ -16,6 +16,10 @@ public class MetalProduct {
     private BigDecimal price;//单价
     private List<FavourableActivity> favourActions;//参与的活动
     
+    public MetalProduct(String productNo) {
+    	this.productNo = productNo;
+    }
+    
     public MetalProduct(String productNo,String productName,BigDecimal price,String priceUnit,
     		List<FavourableActivity> favourableActivity) {
     	this.productNo = productNo;
