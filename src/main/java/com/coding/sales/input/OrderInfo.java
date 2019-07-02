@@ -26,27 +26,15 @@ public class OrderInfo {
 			return new BigDecimal(0);
 		}
 		
+		BigDecimal coupons,fullfeed,reduced;
 		for (MetalProduct metalProduct : metalProductList) {
 			List<JoinAction> favourList =  metalProduct.getFavourActions();
-			BigDecimal coupons,fullfeed,reduced;
-			
-			
-			
-			
 			
 			for (JoinAction favourable : favourList) {
-				
-				String actType = favourable.getActType();
-				if(JoinAction.COUPONS.equals(actType)) {
-					getCouponsPriceCal(metalProduct);
-				}else if(JoinAction.FULLFEED_ACTIVITY.equals(actType)) {
-					
-				}else if(JoinAction.REDUCED_ACTIVITY.equals(actType)) {
-					getReducedPriceCal();
-				}
+				this.amount = favourable.getPayValue(metalProduct.getPrice(), this.productNum);
+				this.discount = favourable.getPayFreeValue(metalProduct.getPrice(), this.productNum);
 			}
 		}
-		getReducedPriceCal();
 		
 		return null;
 	}
@@ -58,50 +46,6 @@ public class OrderInfo {
 		
 	}
 	
-	/**
-	 * 打折手续费计算
-	 */
-	public BigDecimal getCouponsPriceCal(MetalProduct metalProduct) {
-		BigDecimal price = metalProduct.getPrice();
-		
-		return this.getActRate().multiply(price).multiply(this.productNum);
-		
-	}
-	
-	/**
-	 * 免减续费计算
-	 */
-	public BigDecimal getReducedPriceCal() {
-		
-		BigDecimal price = this.metalProduct.getPrice();
-		
-		if(this.metalProduct.getFavourActions()!=null) {
-			List<FavourableActivity> favourList = this.metalProduct.getFavourActions();
-			for (FavourableActivity favourableActivity : favourList) {
-				String actType = favourableActivity.getActType();
-				if(FavourableActivity.REDUCED_ACTIVITY.equals(actType)) {
-					return price.multiply(this.getProductNum().subtract(FavourableActivity.REDUCed_MAP.get(price.multiply(this.getProductNum()));
-				}
-			}
-			
-		}
-	}
-	
-	public BigDecimal getFullfeedPriceCal() {
-		
-		if(this.metalProduct.getFavourActions()!=null) {
-			List<FavourableActivity> favourList = this.metalProduct.getFavourActions();
-			for (FavourableActivity favourableActivity : favourList) {
-				String actType = favourableActivity.getActType();
-				if(FavourableActivity.FULLFEED_ACTIVITY.equals(actType)) {
-					
-					return price.multiply(this.getProductNum().subtract(FavourableActivity.REDUCed_MAP.get(price.multiply(this.getProductNum()));
-				}
-			}
-			
-		}
-	}
-
 	/**
 	 * @return the metalProduct
 	 */

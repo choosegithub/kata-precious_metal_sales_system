@@ -27,9 +27,15 @@ public class CouponsAction extends JoinAction{
 				
 	}
 	
+	@Override
 	public BigDecimal getPayValue(BigDecimal price,BigDecimal prodNum) {
 		
 		return super.actRate.multiply(prodNum).multiply(price);
+	}
+	
+	@Override
+	public BigDecimal getPayFreeValue(BigDecimal price,BigDecimal prodNum) {
+		return (new BigDecimal(1).subtract(super.actRate)).multiply(prodNum).multiply(price);
 	}
 	
 }

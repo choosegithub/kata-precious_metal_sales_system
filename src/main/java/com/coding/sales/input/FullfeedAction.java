@@ -24,6 +24,8 @@ public class FullfeedAction extends JoinAction{
 	private static String PAYTYPE1 = "1";
 	private static String PAYTYPE2 = "2";
 	
+	public String payType;//支付类型
+	
 	/**
 	 * @param actId
 	 * @param actName
@@ -35,17 +37,44 @@ public class FullfeedAction extends JoinAction{
 		this.actType = FULLFEED_ACTIVITY;
 	}
 	
-	public BigDecimal getPayValue(String payType,BigDecimal price,BigDecimal prodNum) {
+	@Override
+	public BigDecimal getPayValue(BigDecimal price,BigDecimal prodNum) {
 		
-		if(PAYTYPE1.equals(payType)&&prodNum.compareTo(SAN)>=0) {
+		if(PAYTYPE1.equals(this.payType)&&prodNum.compareTo(SAN)>=0) {
+			return price.multiply(ZEROFIVE);
+		}
+		if(PAYTYPE2.equals(this.payType)&&prodNum.compareTo(SI)>=0) {
+			return price.multiply(YI);
+		}
+		return new BigDecimal(0);
+		
+	}
+	
+	@Override
+	public BigDecimal getPayFreeValue(BigDecimal price,BigDecimal prodNum) {
+		
+		if(PAYTYPE1.equals(this.payType)&&prodNum.compareTo(SAN)>=0) {
 			super.actName = HUODONGYI;
 			return price.multiply(prodNum.subtract(ZEROFIVE));
 		}
-		if(PAYTYPE2.equals(payType)&&prodNum.compareTo(SI)>=0) {
+		if(PAYTYPE2.equals(this.payType)&&prodNum.compareTo(SI)>=0) {
 			super.actName = HUODONGER;
 			return price.multiply(prodNum.subtract(YI));
 		}
 		return price.multiply(prodNum);
-		
+	}
+
+	/**
+	 * @return the payType
+	 */
+	public String getPayType() {
+		return payType;
+	}
+
+	/**
+	 * @param payType the payType to set
+	 */
+	public void setPayType(String payType) {
+		this.payType = payType;
 	}
 }

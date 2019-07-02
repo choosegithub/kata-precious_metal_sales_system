@@ -11,7 +11,7 @@ import java.util.Map;
  * @author Eclipse
  *
  */
-public class JoinAction {
+public abstract class JoinAction {
 
 	public String actId;//活动编号
 	public String actName;//活动名称
@@ -48,6 +48,22 @@ public class JoinAction {
 	public JoinAction() {
 		super();
 	}
+	
+	/**
+	 * 支付金额
+	 * @param price
+	 * @param prodNum
+	 * @return
+	 */
+	public abstract BigDecimal getPayValue(BigDecimal price,BigDecimal prodNum);
+	
+	/**
+	 * 免费金额
+	 * @param price
+	 * @param prodNum
+	 * @return
+	 */
+	public abstract BigDecimal getPayFreeValue(BigDecimal price,BigDecimal prodNum);
 	
 	/**
 	 * @return the actId

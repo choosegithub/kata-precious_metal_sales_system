@@ -17,6 +17,7 @@ public class ReducedAction  extends JoinAction{
 	private static BigDecimal ERQIANYUAN = new BigDecimal(2000);
 	private static BigDecimal SANQIANYUAN = new BigDecimal(3000);
 	
+	private static BigDecimal YUAN_0 = new BigDecimal(0);
 	private static BigDecimal YUAN_10 = new BigDecimal(10);
 	private static BigDecimal YUAN_30 = new BigDecimal(30);
 	private static BigDecimal YUAN_350 = new BigDecimal(350);
@@ -35,6 +36,7 @@ public class ReducedAction  extends JoinAction{
 		super.actType = REDUCED_ACTIVITY;
 	}
 	
+	@Override
 	public BigDecimal getPayValue(BigDecimal price,BigDecimal prodNum) {
 		
 		BigDecimal amt = price.multiply(prodNum);
@@ -54,6 +56,26 @@ public class ReducedAction  extends JoinAction{
 		}
 		
 		return result;
+	}
+	
+	@Override
+	public BigDecimal getPayFreeValue(BigDecimal price,BigDecimal prodNum) {
+		
+		BigDecimal amt = price.multiply(prodNum);
+		
+		BigDecimal result = null;
+		if(amt.compareTo(YIQIANYUAN)<0) {
+			result= YUAN_0 ;
+		}else if (amt.compareTo(YIQIANYUAN)>=0 && amt.compareTo(ERQIANYUAN)<0){
+			result = YUAN_10;
+		}else if (amt.compareTo(ERQIANYUAN)>=0 && amt.compareTo(SANQIANYUAN)<0){
+			result = YUAN_30;
+		}else if (amt.compareTo(SANQIANYUAN)>=0){
+			result = YUAN_350;
+		}
+		
+		return result;
+		
 	}
 	
 }
