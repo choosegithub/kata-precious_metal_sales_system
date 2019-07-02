@@ -16,19 +16,49 @@ public class Members {
      * @param oldMemberType         原会员等级
      * @param newMemberType         新会员等级。当新老等级不一致时，视为升级
      */
-	//会员编号
+	//会员编号(卡号)
 	private String memberNo;
 	//会员姓名
     private String memberName;
     //原会员等级
-    private String oldMemberType;
+    private int oldMemberType;
     //新会员等级
-    private String newMemberType;
+    private int newMemberType;
     //本次消费会员新增的积分
     private int memberPointsIncreased;
     //会员最新的积分
     private int memberPoints;
     
+	/**
+	 * @param memberNo
+	 * @param memberName
+	 * @param oldMemberType
+	 * @param newMemberType
+	 * @param memberPointsIncreased
+	 * @param memberPoints
+	 */
+	public Members(String memberNo, String memberName, int oldMemberType, int newMemberType,
+			int memberPointsIncreased, int memberPoints) {
+		super();
+		this.memberNo = memberNo;
+		this.memberName = memberName;
+		this.oldMemberType = oldMemberType;
+		this.newMemberType = newMemberType;
+		this.memberPointsIncreased = memberPointsIncreased;
+		this.memberPoints = memberPoints;
+	}
+	
+	public Members(String memberNo, String memberName, int oldMemberType, int newMemberType,
+		    int memberPoints) {
+		super();
+		this.memberNo = memberNo;
+		this.memberName = memberName;
+		this.oldMemberType = oldMemberType;
+		this.newMemberType = newMemberType;
+		this.memberPointsIncreased = 0;
+		this.memberPoints = memberPoints;
+	}
+	
 	public String getMemberNo() {
 		return memberNo;
 	}
@@ -41,18 +71,23 @@ public class Members {
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
-	public String getOldMemberType() {
+
+	public int getOldMemberType() {
 		return oldMemberType;
 	}
-	public void setOldMemberType(String oldMemberType) {
+
+	public void setOldMemberType(int oldMemberType) {
 		this.oldMemberType = oldMemberType;
 	}
-	public String getNewMemberType() {
+
+	public int getNewMemberType() {
 		return newMemberType;
 	}
-	public void setNewMemberType(String newMemberType) {
+
+	public void setNewMemberType(int newMemberType) {
 		this.newMemberType = newMemberType;
 	}
+
 	public int getMemberPointsIncreased() {
 		return memberPointsIncreased;
 	}
